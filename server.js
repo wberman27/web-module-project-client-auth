@@ -132,3 +132,10 @@ function getNextId() {
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);
 });
+
+app.post("/api/logout", (req, res) => {
+  //remove token from database
+  res.status(200).json({
+    payload: token
+  });
+});

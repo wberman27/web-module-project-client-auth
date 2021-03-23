@@ -5,11 +5,11 @@ import './App.css';
 import Login from './components/Login'
 import Friends from './components/Friends'
 import {axiosWithAuth} from './utils/axiosWithAuth'
-import axios from 'axios';
+import PrivateRoute from './components/PrivateRoute'
 
 const logOut = () =>{
   axiosWithAuth()
-  .post('/logout')
+  .post('/api/logout')
   .then(res =>{
     localStorage.removeItem('token')
   })
@@ -42,7 +42,7 @@ function App() {
       <div className="App">
       <Switch>  
         <Route path='/login' component={Login} />
-        <Route path='/friends' component={Friends} /> {/*Private Route, requires token */}
+        <PrivateRoute exact path='/friends' component={Friends} /> {/*Private Route, requires token */}
       </Switch>
       </div>
     </Router>
