@@ -1,5 +1,24 @@
 .App {
   text-align: center;
+  display:flex;
+  flex-flow:column;
+  justify-content: center;
+  align-items: center;
+}
+
+form{
+  display:flex;
+  flex-flow:column;
+  justify-content: center;
+}
+input{
+  margin: 5%;
+}
+.form-wrapper{
+  width:20%;
+}
+button{
+  width:50%;
 }
 
 .App-logo {
