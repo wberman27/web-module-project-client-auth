@@ -12,16 +12,16 @@ function App() {
         <h1> Imaginary Friends </h1>
         <ul>
             <li>
-              <Link to='login'>Login</Link>
+              <Link to='/login'>Login</Link>
             </li>
 
         </ul>
       </div>
       
       <div className="App">
-        
-        <Login />
-        
+      <Switch>  
+        <Route path='/login' component={Login} />
+      </Switch>
       </div>
     </Router>
   );
