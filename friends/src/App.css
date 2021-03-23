@@ -37,6 +37,7 @@ ul{
 }
 li{
   list-style: none;
+  margin: 20%;
 }
 li a{
   text-decoration: none;

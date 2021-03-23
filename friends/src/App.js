@@ -3,6 +3,21 @@ import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
 
 import './App.css';
 import Login from './components/Login'
+import Friends from './components/Friends'
+import {axiosWithAuth} from './utils/axiosWithAuth'
+import axios from 'axios';
+
+const logOut = () =>{
+  axiosWithAuth()
+  .post('/logout')
+  .then(res =>{
+    localStorage.removeItem('token')
+  })
+  .catch(err =>{
+    console.log('LOGOUT ERROR: ', err, err.response)
+  })
+}
+
 
 
 function App() {
@@ -14,6 +29,12 @@ function App() {
             <li>
               <Link to='/login'>Login</Link>
             </li>
+            <li>
+              <Link to='/login' onClick={logOut}>Logout</Link>
+            </li>
+            <li>
+              <Link to='/friends'>Friends</Link>
+            </li>
 
         </ul>
       </div>
@@ -21,6 +42,7 @@ function App() {
       <div className="App">
       <Switch>  
         <Route path='/login' component={Login} />
+        <Route path='/friends' component={Friends} /> {/*Private Route, requires token */}
       </Switch>
       </div>
     </Router>

@@ -28,6 +28,7 @@ class Login extends React.Component {
             // console.log(res)
             localStorage.setItem('token', res.data.payload)
             this.setState({isLoading:false})
+            this.props.history.push('/friends')
         })
         .catch(err =>{
             console.log('LOGIN ERROR: ', err, err.response)
@@ -35,7 +36,7 @@ class Login extends React.Component {
 
     }
 
-    handleCheckBox = (e) =>{
+    handleCheckBox = () =>{
         const checkBox = document.getElementById('passID')
         if(checkBox.type === 'password'){
             checkBox.type = 'text';
