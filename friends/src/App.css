@@ -1,0 +1,86 @@
+.App {
+  text-align: center;
+  display:flex;
+  flex-flow:column;
+  justify-content: center;
+  align-items: center;
+}
+.App a{
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius:3px;
+}
+.Nav{
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 5px solid black;
+}
+#inputForm{
+  display:flex;
+  flex-flow:column;
+  justify-content: center;
+}
+input{
+  margin: 5%;
+}
+.form-wrapper{
+  width:20%;
+}
+button{
+  width:50%;
+}
+ul{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+li{
+  list-style: none;
+  margin: 20%;
+}
+li a{
+  text-decoration: none;
+}
+#loginError{
+  color:red;
+}
+#addFriendForm{
+  width:80%;
+}
+#addFriendForm input{
+  margin: 1%;
+}
+#addFriendForm button{
+  width:10%;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
