@@ -6,13 +6,16 @@ import Login from './components/Login'
 import Friends from './components/Friends'
 import {axiosWithAuth} from './utils/axiosWithAuth'
 import PrivateRoute from './components/PrivateRoute'
+import Home from './components/Home'
 
+
+//invoking logout will send request to api to remove token and move client to login page
 const logOut = () =>{
   axiosWithAuth()
   .post('/api/logout')
   .then(res =>{
     localStorage.removeItem('token')
-    window.location.href='/login'
+    window.location.href=''
   })
   .catch(err =>{
     console.log('LOGOUT ERROR: ', err, err.response)
@@ -28,10 +31,13 @@ function App() {
         <h1> Imaginary Friends </h1>
         <ul>
             <li>
+              <Link to=''>Home</Link>
+            </li>
+            <li>
               <Link to='/login'>Login</Link>
             </li>
             <li>
-              <Link to='/login' onClick={logOut}>Logout</Link>
+              <Link onClick={logOut}>Logout</Link>
             </li>
             <li>
               <Link to='/friends'>Friends</Link>
@@ -41,9 +47,10 @@ function App() {
       </div>
       
       <div className="App">
-      <Switch>  
+      <Switch>
         <Route path='/login' component={Login} />
         <PrivateRoute exact path='/friends' component={Friends} /> {/*Private Route, requires token */}
+        <Route path='/' component={Home}/>  
       </Switch>
       </div>
     </Router>

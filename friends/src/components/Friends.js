@@ -14,10 +14,13 @@ class Friends extends React.Component {
         }
     }
 
+    //on page load get data
     componentDidMount(){
         this.getData();
     }
 
+
+    //request api for data, set friends array to data
     getData = () =>{
         axiosWithAuth()
         .get('/api/friends')
@@ -30,7 +33,7 @@ class Friends extends React.Component {
         })
     }
 
-    
+    //set friend to values of inputs
     handleChange = (e) =>{
         this.setState({
             friend: {
@@ -40,6 +43,7 @@ class Friends extends React.Component {
         })
     }
     
+    //add friend to friends in api
     handleAdd = (e) =>{
         e.preventDefault();
         axiosWithAuth()

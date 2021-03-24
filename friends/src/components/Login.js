@@ -1,7 +1,6 @@
 import React from 'react'
 import '../App.css'
 import axios from 'axios'
-import PrivateRoute from './PrivateRoute'
 
 class Login extends React.Component {
     state = {
@@ -13,6 +12,7 @@ class Login extends React.Component {
         error: false,
     }
 
+    //set input values to our credentials state
     handleChange = (e) =>{
         this.setState({
             credentials: {
@@ -22,6 +22,7 @@ class Login extends React.Component {
         })
     }
 
+    //on log in submit, set isloading to true, request api and with our credentials, set token in localstorage to res.data.payload
     handleSubmit = (e) =>{
         e.preventDefault();
         this.setState({isLoading: true})
@@ -30,17 +31,20 @@ class Login extends React.Component {
             // console.log(res)
             localStorage.setItem('token', res.data.payload)
             this.props.history.push('/friends')
+            //no longer loading, have no error message
             this.setState({isLoading:false})
             this.setState({error:false})
         })
         .catch(err =>{
             console.log('LOGIN ERROR: ', err, err.response)
+            //no loading, display error message
             this.setState({isLoading:false})
             this.setState({error:true})
         })
 
     }
 
+    //allow client to show/hide password with checkbox
     handleCheckBox = () =>{
         const checkBox = document.getElementById('passID')
         if(checkBox.type === 'password'){
@@ -64,6 +68,7 @@ class Login extends React.Component {
                     <label>Password
                     <input id ='passID' type='password' name='password' onChange = {this.handleChange} value={this.state.credentials.password} placeholder='enter password'/>
                     </label>
+                    {this.state.error ? <p id='loginError'>Username/Password is incorrect.</p> : null}
                     <label>Show Password
                     <input type='checkbox' onClick={this.handleCheckBox}/>
                     </label>
@@ -71,7 +76,6 @@ class Login extends React.Component {
                 </form>
                 <form id ='submitForm' onSubmit = {this.handleSubmit}>
                 {this.state.isLoading ? <h3>Loading...</h3> : null}
-                {this.state.error ? <p id='loginError'>Username/Password is incorrect.</p> : null}
                 <button>Log in</button>
                 </form>
                 </>

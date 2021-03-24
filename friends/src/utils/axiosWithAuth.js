@@ -1,5 +1,8 @@
 import axios from 'axios'
 
+
+
+//keeps code dry
 export const axiosWithAuth = () =>{
 
     const token = localStorage.getItem('token')
