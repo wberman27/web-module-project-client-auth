@@ -12,6 +12,7 @@ const logOut = () =>{
   .post('/api/logout')
   .then(res =>{
     localStorage.removeItem('token')
+    window.location.href='/login'
   })
   .catch(err =>{
     console.log('LOGOUT ERROR: ', err, err.response)

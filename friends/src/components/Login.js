@@ -1,6 +1,7 @@
 import React from 'react'
 import '../App.css'
 import axios from 'axios'
+import PrivateRoute from './PrivateRoute'
 
 class Login extends React.Component {
     state = {
@@ -8,7 +9,8 @@ class Login extends React.Component {
             username: '',
             password: ''
         },
-        isLoading: false
+        isLoading: false,
+        error: false,
     }
 
     handleChange = (e) =>{
@@ -27,11 +29,14 @@ class Login extends React.Component {
         .then(res =>{
             // console.log(res)
             localStorage.setItem('token', res.data.payload)
-            this.setState({isLoading:false})
             this.props.history.push('/friends')
+            this.setState({isLoading:false})
+            this.setState({error:false})
         })
         .catch(err =>{
             console.log('LOGIN ERROR: ', err, err.response)
+            this.setState({isLoading:false})
+            this.setState({error:true})
         })
 
     }
@@ -48,6 +53,9 @@ class Login extends React.Component {
     render(){
         return(
             <div className= 'form-wrapper'>
+                {localStorage.getItem('token') ? <h3>You are already logged in.</h3> : 
+                
+                <>
                 <form id='inputForm'>
                     <label>Account
                     <input type='text' name='username' onChange = {this.handleChange} value={this.state.credentials.username} placeholder='enter username'/>
@@ -63,8 +71,11 @@ class Login extends React.Component {
                 </form>
                 <form id ='submitForm' onSubmit = {this.handleSubmit}>
                 {this.state.isLoading ? <h3>Loading...</h3> : null}
+                {this.state.error ? <p id='loginError'>Username/Password is incorrect.</p> : null}
                 <button>Log in</button>
                 </form>
+                </>
+                }
             </div>
 
         );
