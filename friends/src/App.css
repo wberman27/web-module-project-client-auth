@@ -45,6 +45,15 @@ li a{
 #loginError{
   color:red;
 }
+#addFriendForm{
+  width:80%;
+}
+#addFriendForm input{
+  margin: 1%;
+}
+#addFriendForm button{
+  width:10%;
+}
 
 .App-header {
   background-color: #282c34;
